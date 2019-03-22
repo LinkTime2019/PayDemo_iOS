@@ -83,7 +83,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
         return;
     }
     if (self.URLSchemeTF.text.length == 0) {
-        [MBProgressHUD showMessage:@"请输入URLSchemeTF!"];
+        [MBProgressHUD showMessage:@"请输入URLScheme!"];
         return;
     }
     
