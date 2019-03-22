@@ -8,8 +8,6 @@
 
 #import "PDAuth2VC.h"
 #import "PandaX.h"
-#import "PDProgressHUD.h"
-#import "PDProgressHUD+Extention.h"
 
 
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PDProgressHUD.h"
+#import "PDProgressHUD+Extention.h"
 
 
 @interface PDAgent : NSObject
