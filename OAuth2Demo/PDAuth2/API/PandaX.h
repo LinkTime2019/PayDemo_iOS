@@ -16,7 +16,7 @@
 
  @param appid 钱包平台获取的appid
  @param appsecret 钱包平台获取appid时对应的appsecret
- @param completion 请求完成回调方法
+ @param completion 请求完成回调方法[需要自行解析返回结果]
  */
 + (void)accessTokenWithAppId:(NSString *)appid Appsecret:(NSString *)appsecret finish:(void(^)(NSDictionary *response, NSError *error))completion;
 
