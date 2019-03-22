@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		424CC46B223F6B64000F1A87 /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 424CC464223F6B64000F1A87 /* loading@2x.png */; };
-		424CC46C223F6B64000F1A87 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CC465223F6B64000F1A87 /* MBProgressHUD.m */; };
+		424CC46C223F6B64000F1A87 /* PDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CC465223F6B64000F1A87 /* PDProgressHUD.m */; };
 		424CC46D223F6B64000F1A87 /* loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 424CC466223F6B64000F1A87 /* loading@3x.png */; };
-		424CC46E223F6B64000F1A87 /* MBProgressHUD+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CC469223F6B64000F1A87 /* MBProgressHUD+Extention.m */; };
+		424CC46E223F6B64000F1A87 /* PDProgressHUD+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CC469223F6B64000F1A87 /* PDProgressHUD+Extention.m */; };
 		424CC46F223F6B64000F1A87 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 424CC46A223F6B64000F1A87 /* loading.png */; };
 		42E29B35221E863E0000E480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E29B34221E863E0000E480 /* AppDelegate.m */; };
 		42E29B38221E863E0000E480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E29B37221E863E0000E480 /* ViewController.m */; };
@@ -50,11 +50,11 @@
 
 /* Begin PBXFileReference section */
 		424CC464223F6B64000F1A87 /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
-		424CC465223F6B64000F1A87 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		424CC465223F6B64000F1A87 /* PDProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDProgressHUD.m; sourceTree = "<group>"; };
 		424CC466223F6B64000F1A87 /* loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@3x.png"; sourceTree = "<group>"; };
-		424CC467223F6B64000F1A87 /* MBProgressHUD+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Extention.h"; sourceTree = "<group>"; };
-		424CC468223F6B64000F1A87 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		424CC469223F6B64000F1A87 /* MBProgressHUD+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Extention.m"; sourceTree = "<group>"; };
+		424CC467223F6B64000F1A87 /* PDProgressHUD+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDProgressHUD+Extention.h"; sourceTree = "<group>"; };
+		424CC468223F6B64000F1A87 /* PDProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDProgressHUD.h; sourceTree = "<group>"; };
+		424CC469223F6B64000F1A87 /* PDProgressHUD+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PDProgressHUD+Extention.m"; sourceTree = "<group>"; };
 		424CC46A223F6B64000F1A87 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		42E29B30221E863D0000E480 /* OAuth2Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuth2Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E29B33221E863E0000E480 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,18 +119,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		424CC463223F6B64000F1A87 /* MBProcessHUD */ = {
+		424CC463223F6B64000F1A87 /* PDProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
 				424CC464223F6B64000F1A87 /* loading@2x.png */,
-				424CC465223F6B64000F1A87 /* MBProgressHUD.m */,
+				424CC465223F6B64000F1A87 /* PDProgressHUD.m */,
 				424CC466223F6B64000F1A87 /* loading@3x.png */,
-				424CC467223F6B64000F1A87 /* MBProgressHUD+Extention.h */,
-				424CC468223F6B64000F1A87 /* MBProgressHUD.h */,
-				424CC469223F6B64000F1A87 /* MBProgressHUD+Extention.m */,
+				424CC467223F6B64000F1A87 /* PDProgressHUD+Extention.h */,
+				424CC468223F6B64000F1A87 /* PDProgressHUD.h */,
+				424CC469223F6B64000F1A87 /* PDProgressHUD+Extention.m */,
 				424CC46A223F6B64000F1A87 /* loading.png */,
 			);
-			path = MBProcessHUD;
+			path = PDProgressHUD;
 			sourceTree = "<group>";
 		};
 		42E29B27221E863D0000E480 = {
@@ -193,7 +193,7 @@
 		42E29B65221E8BF80000E480 /* PDAuth2 */ = {
 			isa = PBXGroup;
 			children = (
-				424CC463223F6B64000F1A87 /* MBProcessHUD */,
+				424CC463223F6B64000F1A87 /* PDProgressHUD */,
 				42E29B72221EB1210000E480 /* Agent */,
 				42E29B71221EB1070000E480 /* API */,
 				42E29B70221EB0FC0000E480 /* Network */,
@@ -399,10 +399,10 @@
 				42E29B81221EB6590000E480 /* AFURLResponseSerialization.m in Sources */,
 				42E29B84221EB6590000E480 /* AFURLRequestSerialization.m in Sources */,
 				42E29B6F221E953E0000E480 /* PDAuth2VC.m in Sources */,
-				424CC46E223F6B64000F1A87 /* MBProgressHUD+Extention.m in Sources */,
+				424CC46E223F6B64000F1A87 /* PDProgressHUD+Extention.m in Sources */,
 				42E29B85221EB6590000E480 /* AFNetworkReachabilityManager.m in Sources */,
 				42E29B82221EB6590000E480 /* AFHTTPSessionManager.m in Sources */,
-				424CC46C223F6B64000F1A87 /* MBProgressHUD.m in Sources */,
+				424CC46C223F6B64000F1A87 /* PDProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,8 @@
 
-#import "MBProgressHUD+Extention.h"
-#import "MBProgressHUD.h"
+#import "PDProgressHUD+Extention.h"
+#import "PDProgressHUD.h"
 
-@implementation MBProgressHUD (Extention)
+@implementation PDProgressHUD (Extention)
 
 + (void)showMessageM:(NSString*)message {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -24,8 +24,8 @@
     NSArray* subView = [view subviews];
     UIView* target;
     for (UIView* tempView in subView) {
-        if ([tempView isKindOfClass:[MBProgressHUD class]]) {
-            MBProgressHUD* hud = (MBProgressHUD*)tempView;
+        if ([tempView isKindOfClass:[PDProgressHUD class]]) {
+            PDProgressHUD* hud = (PDProgressHUD*)tempView;
             if (hud.labelText.length > 0) {
                 target = tempView;
                 break;
@@ -33,17 +33,17 @@
         }
     }
     if (target) {
-        [(MBProgressHUD*)target hide:NO];
+        [(PDProgressHUD*)target hide:NO];
     }
     
     // 快速显示一个提示信息
-    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    PDProgressHUD* hud = [PDProgressHUD showHUDAddedTo:view animated:YES];
     
     //    hud.labelText = StringNoNull(message);
     hud.detailsLabelText = message;
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
-    hud.mode = MBProgressHUDModeText;
+    hud.mode = PDProgressHUDModeText;
     hud.userInteractionEnabled = NO;
     hud.labelFont = [UIFont systemFontOfSize:16];
     hud.margin = 20.0f;

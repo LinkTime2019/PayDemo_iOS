@@ -38,7 +38,7 @@
 
 - (void)setIsNetWork:(BOOL)isNetWork {
     _isNetWork = isNetWork;
-//    if (!_isNetWork) [MBProgressHUD showMessage:PD_LOCAL(@"Network_disconnected")];
+//    if (!_isNetWork) [PDProgressHUD showMessage:PD_LOCAL(@"Network_disconnected")];
     NSLog(@"Network_disconnected");
 }
 

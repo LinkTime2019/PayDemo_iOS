@@ -8,8 +8,8 @@
 
 #import "PDAuth2VC.h"
 #import "PandaX.h"
-#import "MBProgressHUD.h"
-#import "MBProgressHUD+Extention.h"
+#import "PDProgressHUD.h"
+#import "PDProgressHUD+Extention.h"
 
 
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -52,7 +52,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
  */
 - (IBAction)fetchTokensAction:(id)sender {
     if (self.access_token.length == 0) {
-        [MBProgressHUD showMessage:@"请先获取access_token!"];
+        [PDProgressHUD showMessage:@"请先获取access_token!"];
         return;
     }
     [PDAgent tokensWithAccessToken:self.access_token finish:^(NSArray *tokens, NSError *error) {
@@ -67,28 +67,28 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
  */
 - (IBAction)openPandaX:(id)sender {
     if (self.receiveAddressTF.text.length == 0) {
-        [MBProgressHUD showMessage:@"请输入转账地址!"];
+        [PDProgressHUD showMessage:@"请输入转账地址!"];
         return;
     }
     if (self.transferAmountTF.text.length == 0) {
-        [MBProgressHUD showMessage:@"请输入转账金额!"];
+        [PDProgressHUD showMessage:@"请输入转账金额!"];
         return;
     }
     if (self.tokenTF.text.length == 0) {
-        [MBProgressHUD showMessage:@"请输入转账的Token!"];
+        [PDProgressHUD showMessage:@"请输入转账的Token!"];
         return;
     }
     if (self.AppnameTF.text.length == 0) {
-        [MBProgressHUD showMessage:@"请输入应用名称!"];
+        [PDProgressHUD showMessage:@"请输入应用名称!"];
         return;
     }
     if (self.URLSchemeTF.text.length == 0) {
-        [MBProgressHUD showMessage:@"请输入URLScheme!"];
+        [PDProgressHUD showMessage:@"请输入URLScheme!"];
         return;
     }
     
     if (self.access_token.length == 0) {
-        [MBProgressHUD showMessage:@"请先获取access_token!"];
+        [PDProgressHUD showMessage:@"请先获取access_token!"];
         return;
     }
     

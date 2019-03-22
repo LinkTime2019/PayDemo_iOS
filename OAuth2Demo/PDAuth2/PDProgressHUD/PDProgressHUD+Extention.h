@@ -1,7 +1,7 @@
 
-#import "MBProgressHUD.h"
+#import "PDProgressHUD.h"
 
-@interface MBProgressHUD (Extention)
+@interface PDProgressHUD (Extention)
 
 + (instancetype)showMessage:(NSString*)message;
 

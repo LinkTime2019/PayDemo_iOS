@@ -1,37 +1,37 @@
 
-#import "MBProgressHUD.h"
+#import "PDProgressHUD.h"
 #import <tgmath.h>
 
 
 #if __has_feature(objc_arc)
-	#define MB_AUTORELEASE(exp) exp
-	#define MB_RELEASE(exp) exp
-	#define MB_RETAIN(exp) exp
+	#define PD_AUTORELEASE(exp) exp
+	#define PD_RELEASE(exp) exp
+	#define PD_RETAIN(exp) exp
 #else
-	#define MB_AUTORELEASE(exp) [exp autorelease]
-	#define MB_RELEASE(exp) [exp release]
-	#define MB_RETAIN(exp) [exp retain]
+	#define PD_AUTORELEASE(exp) [exp autorelease]
+	#define PD_RELEASE(exp) [exp release]
+	#define PD_RETAIN(exp) [exp retain]
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
-    #define MBLabelAlignmentCenter NSTextAlignmentCenter
+    #define PDLabelAlignmentCenter NSTextAlignmentCenter
 #else
-    #define MBLabelAlignmentCenter UITextAlignmentCenter
+    #define PDLabelAlignmentCenter UITextAlignmentCenter
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-	#define MB_TEXTSIZE(text, font) [text length] > 0 ? [text \
+	#define PD_TEXTSIZE(text, font) [text length] > 0 ? [text \
 		sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
 #else
-	#define MB_TEXTSIZE(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero;
+	#define PD_TEXTSIZE(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero;
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-	#define MB_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
+	#define PD_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
 		boundingRectWithSize:maxSize options:(NSStringDrawingUsesLineFragmentOrigin) \
 		attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #else
-	#define MB_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
+	#define PD_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
 		sizeWithFont:font constrainedToSize:maxSize lineBreakMode:mode] : CGSizeZero;
 #endif
 
@@ -49,7 +49,7 @@ static const CGFloat kLabelFontSize = 16.f;
 static const CGFloat kDetailsLabelFontSize = 12.f;
 
 
-@interface MBProgressHUD () {
+@interface PDProgressHUD () {
 	BOOL useAnimation;
 	SEL methodForExecution;
 	id targetForExecution;
@@ -60,15 +60,15 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	CGAffineTransform rotationTransform;
 }
 
-@property (atomic, MB_STRONG) UIView *indicator;
-@property (atomic, MB_STRONG) NSTimer *graceTimer;
-@property (atomic, MB_STRONG) NSTimer *minShowTimer;
-@property (atomic, MB_STRONG) NSDate *showStarted;
+@property (atomic, PD_STRONG) UIView *indicator;
+@property (atomic, PD_STRONG) NSTimer *graceTimer;
+@property (atomic, PD_STRONG) NSTimer *minShowTimer;
+@property (atomic, PD_STRONG) NSDate *showStarted;
 
 @end
 
 
-@implementation MBProgressHUD
+@implementation PDProgressHUD
 
 #pragma mark - Properties
 
@@ -101,23 +101,23 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 @synthesize progress;
 @synthesize size;
 @synthesize activityIndicatorColor;
-#if NS_BLOCKS_AVAILABLE
+#if NS_BLOCKS_AVAILABLE_PD
 @synthesize completionBlock;
 #endif
 
 #pragma mark - Class methods
 
-+ (MB_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
-	MBProgressHUD *hud = [[self alloc] initWithView:view];
++ (PD_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
+	PDProgressHUD *hud = [[self alloc] initWithView:view];
     hud.frame = CGRectMake(0, 0, 80.0, 80.0);
 	hud.removeFromSuperViewOnHide = YES;
 	[view addSubview:hud];
 	[hud show:animated];
-	return MB_AUTORELEASE(hud);
+	return PD_AUTORELEASE(hud);
 }
 
 + (BOOL)hideHUDForView:(UIView *)view animated:(BOOL)animated {
-	MBProgressHUD *hud = [self HUDForView:view];
+	PDProgressHUD *hud = [self HUDForView:view];
 	if (hud != nil) {
 		hud.removeFromSuperViewOnHide = YES;
 		[hud hide:animated];
@@ -127,19 +127,19 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 + (NSUInteger)hideAllHUDsForView:(UIView *)view animated:(BOOL)animated {
-	NSArray *huds = [MBProgressHUD allHUDsForView:view];
-	for (MBProgressHUD *hud in huds) {
+	NSArray *huds = [PDProgressHUD allHUDsForView:view];
+	for (PDProgressHUD *hud in huds) {
 		hud.removeFromSuperViewOnHide = YES;
 		[hud hide:animated];
 	}
 	return [huds count];
 }
 
-+ (MB_INSTANCETYPE)HUDForView:(UIView *)view {
++ (PD_INSTANCETYPE)HUDForView:(UIView *)view {
 	NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
 	for (UIView *subview in subviewsEnum) {
 		if ([subview isKindOfClass:self]) {
-			return (MBProgressHUD *)subview;
+			return (PDProgressHUD *)subview;
 		}
 	}
 	return nil;
@@ -162,8 +162,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	self = [super initWithFrame:frame];
 	if (self) {
 		// Set default values for properties
-		self.animationType = MBProgressHUDAnimationFade;
-		self.mode = MBProgressHUDModeIndeterminate;
+		self.animationType = PDProgressHUDAnimationFade;
+		self.mode = PDProgressHUDModeIndeterminate;
 		self.labelText = nil;
 		self.detailsLabelText = nil;
 		self.opacity = 0.8f;
@@ -232,7 +232,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	[labelColor release];
 	[detailsLabelFont release];
 	[detailsLabelColor release];
-#if NS_BLOCKS_AVAILABLE
+#if NS_BLOCKS_AVAILABLE_PD
 	[completionBlock release];
 #endif
 	[super dealloc];
@@ -304,9 +304,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self setNeedsDisplay];
 
-	if (animated && animationType == MBProgressHUDAnimationZoomIn) {
+	if (animated && animationType == PDProgressHUDAnimationZoomIn) {
 		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
-	} else if (animated && animationType == MBProgressHUDAnimationZoomOut) {
+	} else if (animated && animationType == PDProgressHUDAnimationZoomOut) {
 		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
 	}
 	self.showStarted = [NSDate date];
@@ -315,7 +315,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.30];
 		self.alpha = 1.0f;
-		if (animationType == MBProgressHUDAnimationZoomIn || animationType == MBProgressHUDAnimationZoomOut) {
+		if (animationType == PDProgressHUDAnimationZoomIn || animationType == PDProgressHUDAnimationZoomOut) {
 			self.transform = rotationTransform;
 		}
 		[UIView commitAnimations];
@@ -334,9 +334,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 		// 0.02 prevents the hud from passing through touches during the animation the hud will get completely hidden
 		// in the done method
-		if (animationType == MBProgressHUDAnimationZoomIn) {
+		if (animationType == PDProgressHUDAnimationZoomIn) {
 			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
-		} else if (animationType == MBProgressHUDAnimationZoomOut) {
+		} else if (animationType == PDProgressHUDAnimationZoomOut) {
 			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
 		}
 
@@ -361,7 +361,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	if (removeFromSuperViewOnHide) {
 		[self removeFromSuperview];
 	}
-#if NS_BLOCKS_AVAILABLE
+#if NS_BLOCKS_AVAILABLE_PD
 	if (self.completionBlock) {
 		self.completionBlock();
 		self.completionBlock = NULL;
@@ -376,8 +376,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 - (void)showWhileExecuting:(SEL)method onTarget:(id)target withObject:(id)object animated:(BOOL)animated {
 	methodForExecution = method;
-	targetForExecution = MB_RETAIN(target);
-	objectForExecution = MB_RETAIN(object);	
+	targetForExecution = PD_RETAIN(target);
+	objectForExecution = PD_RETAIN(object);
 	// Launch execution in new thread
 	self.taskInProgress = YES;
 	[NSThread detachNewThreadSelector:@selector(launchExecution) toTarget:self withObject:nil];
@@ -385,7 +385,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	[self show:animated];
 }
 
-#if NS_BLOCKS_AVAILABLE
+#if NS_BLOCKS_AVAILABLE_PD
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block {
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -402,7 +402,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
-	 completionBlock:(MBProgressHUDCompletionBlock)completion {
+	 completionBlock:(PDProgressHUDCompletionBlock)completion {
 	self.taskInProgress = YES;
 	self.completionBlock = completion;
 	dispatch_async(queue, ^(void) {
@@ -446,7 +446,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)setupLabels {
 	label = [[UILabel alloc] initWithFrame:self.bounds];
 	label.adjustsFontSizeToFitWidth = YES;
-	label.textAlignment = MBLabelAlignmentCenter;
+	label.textAlignment = PDLabelAlignmentCenter;
 	label.opaque = NO;
 	label.backgroundColor = [UIColor clearColor];
 	label.textColor = self.labelColor;
@@ -457,7 +457,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	detailsLabel = [[UILabel alloc] initWithFrame:self.bounds];
 	detailsLabel.font = self.detailsLabelFont;
 	detailsLabel.adjustsFontSizeToFitWidth = NO;
-	detailsLabel.textAlignment = MBLabelAlignmentCenter;
+	detailsLabel.textAlignment = PDLabelAlignmentCenter;
 	detailsLabel.opaque = NO;
 	detailsLabel.backgroundColor = [UIColor clearColor];
 	detailsLabel.textColor = self.detailsLabelColor;
@@ -470,13 +470,13 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)updateIndicators {
 	
 	BOOL isActivityIndicator = [indicator isKindOfClass:[UIActivityIndicatorView class]];
-	BOOL isRoundIndicator = [indicator isKindOfClass:[MBRoundProgressView class]];
+	BOOL isRoundIndicator = [indicator isKindOfClass:[PDRoundProgressView class]];
 	
-	if (mode == MBProgressHUDModeIndeterminate) {
+	if (mode == PDProgressHUDModeIndeterminate) {
 		if (!isActivityIndicator) {
 			// Update to indeterminate indicator
 			[indicator removeFromSuperview];
-			self.indicator = MB_AUTORELEASE([[UIActivityIndicatorView alloc]
+			self.indicator = PD_AUTORELEASE([[UIActivityIndicatorView alloc]
 											 initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]);
 			[(UIActivityIndicatorView *)indicator startAnimating];
 			[self addSubview:indicator];
@@ -485,29 +485,29 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[(UIActivityIndicatorView *)indicator setColor:self.activityIndicatorColor];
 #endif
 	}
-	else if (mode == MBProgressHUDModeDeterminateHorizontalBar) {
+	else if (mode == PDProgressHUDModeDeterminateHorizontalBar) {
 		// Update to bar determinate indicator
 		[indicator removeFromSuperview];
-		self.indicator = MB_AUTORELEASE([[MBBarProgressView alloc] init]);
+		self.indicator = PD_AUTORELEASE([[PDBarProgressView alloc] init]);
 		[self addSubview:indicator];
 	}
-	else if (mode == MBProgressHUDModeDeterminate || mode == MBProgressHUDModeAnnularDeterminate) {
+	else if (mode == PDProgressHUDModeDeterminate || mode == PDProgressHUDModeAnnularDeterminate) {
 		if (!isRoundIndicator) {
 			// Update to determinante indicator
 			[indicator removeFromSuperview];
-			self.indicator = MB_AUTORELEASE([[MBRoundProgressView alloc] init]);
+			self.indicator = PD_AUTORELEASE([[PDRoundProgressView alloc] init]);
 			[self addSubview:indicator];
 		}
-		if (mode == MBProgressHUDModeAnnularDeterminate) {
-			[(MBRoundProgressView *)indicator setAnnular:YES];
+		if (mode == PDProgressHUDModeAnnularDeterminate) {
+			[(PDRoundProgressView *)indicator setAnnular:YES];
 		}
 	} 
-	else if (mode == MBProgressHUDModeCustomView && customView != indicator) {
+	else if (mode == PDProgressHUDModeCustomView && customView != indicator) {
 		// Update custom view indicator
 		[indicator removeFromSuperview];
 		self.indicator = customView;
 		[self addSubview:indicator];
-	} else if (mode == MBProgressHUDModeText) {
+	} else if (mode == PDProgressHUDModeText) {
 		[indicator removeFromSuperview];
 		self.indicator = nil;
 	}
@@ -534,7 +534,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	totalSize.width = MAX(totalSize.width, indicatorF.size.width);
 	totalSize.height += indicatorF.size.height;
 	
-	CGSize labelSize = MB_TEXTSIZE(label.text, label.font);
+	CGSize labelSize = PD_TEXTSIZE(label.text, label.font);
 	labelSize.width = MIN(labelSize.width, maxWidth);
 	totalSize.width = MAX(totalSize.width, labelSize.width);
 	totalSize.height += labelSize.height;
@@ -544,7 +544,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 	CGFloat remainingHeight = bounds.size.height - totalSize.height - kPadding - 4 * margin; 
 	CGSize maxSize = CGSizeMake(maxWidth, remainingHeight);
-	CGSize detailsLabelSize = MB_MULTILINE_TEXTSIZE(detailsLabel.text, detailsLabel.font, maxSize, detailsLabel.lineBreakMode);
+	CGSize detailsLabelSize = PD_MULTILINE_TEXTSIZE(detailsLabel.text, detailsLabel.font, maxSize, detailsLabel.lineBreakMode);
 	totalSize.width = MAX(totalSize.width, detailsLabelSize.width);
 	totalSize.height += detailsLabelSize.height;
 	if (detailsLabelSize.height > 0.f && (indicatorF.size.height > 0.f || labelSize.height > 0.f)) {
@@ -770,7 +770,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 @end
 
 
-@implementation MBRoundProgressView
+@implementation PDRoundProgressView
 
 #pragma mark - Lifecycle
 
@@ -876,7 +876,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 @end
 
 
-@implementation MBBarProgressView
+@implementation PDBarProgressView
 
 #pragma mark - Lifecycle
 
