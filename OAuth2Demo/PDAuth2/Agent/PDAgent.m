@@ -15,10 +15,6 @@
 
 @implementation PDAgent
 
-+ (void)accessTokenWithAppId:(NSString *)appid configAddress:(NSString *)configAddr finish:(void (^)(NSDictionary *, NSError *))completion {
-    
-}
-
 + (void)accessTokenWithAppId:(NSString *)appid Appsecret:(NSString *)appsecret finish:(void (^)(NSDictionary *, NSError *))completion {
     NSDictionary *params = @{
                              @"grant_type":@"client_credentials",

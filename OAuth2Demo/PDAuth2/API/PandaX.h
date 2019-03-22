@@ -11,8 +11,6 @@
 
 @interface PDAgent : NSObject
 
-
-+ (void)accessTokenWithAppId:(NSString *)appid configAddress:(NSString *)configAddr finish:(void(^)(NSDictionary *response, NSError *error))completion;
 + (void)accessTokenWithAppId:(NSString *)appid Appsecret:(NSString *)appsecret finish:(void(^)(NSDictionary *response, NSError *error))completion;
 
 
