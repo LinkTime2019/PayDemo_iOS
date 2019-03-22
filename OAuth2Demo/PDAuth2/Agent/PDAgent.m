@@ -39,15 +39,4 @@
     }];
 }
 
-+(void)tokensWithAppId:(NSString *)appid Appsecret:(NSString *)appsecret finish:(void (^)(NSArray *, NSError *))completion {
-    [self accessTokenWithAppId:appid Appsecret:appsecret finish:^(NSDictionary *response, NSError *error) {
-        if (!error && response[@"access_token"]) {
-            NSString *accessToken = response[@"access_token"];
-            [self tokensWithAccessToken:accessToken finish:^(NSArray *tokens, NSError *error) {
-                completion(tokens,error);
-            }];
-        }else completion(nil,error);
-    }];
-}
-
 @end

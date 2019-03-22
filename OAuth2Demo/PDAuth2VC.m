@@ -51,7 +51,11 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
  获取支持的代币列表
  */
 - (IBAction)fetchTokensAction:(id)sender {
-    [PDAgent tokensWithAppId:@"unitimes" Appsecret:@"123456" finish:^(NSArray *tokens, NSError *error) {
+    if (self.access_token.length == 0) {
+        [MBProgressHUD showMessage:@"请先获取access_token!"];
+        return;
+    }
+    [PDAgent tokensWithAccessToken:self.access_token finish:^(NSArray *tokens, NSError *error) {
         NSLog(@"tokens:%@|error:%@",tokens,error);
         [self updateRequestResultTF:[NSString stringWithFormat:@"tokens:%@",tokens]];
     }];
