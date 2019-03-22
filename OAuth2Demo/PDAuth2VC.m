@@ -33,6 +33,10 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     self.navigationItem.title = @"三方授权";
 }
 
+
+/**
+ 获取accesstoken
+ */
 - (IBAction)fetchAccessTokenAction:(id)sender {
     self.requesResultTF.text = @"";
     [PDAgent accessTokenWithAppId:@"unitimes" Appsecret:@"123456" finish:^(NSDictionary *response, NSError *error) {
@@ -42,6 +46,10 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     }];
 }
 
+
+/**
+ 获取支持的代币列表
+ */
 - (IBAction)fetchTokensAction:(id)sender {
     [PDAgent tokensWithAppId:@"unitimes" Appsecret:@"123456" finish:^(NSArray *tokens, NSError *error) {
         NSLog(@"tokens:%@|error:%@",tokens,error);
@@ -49,6 +57,10 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     }];
 }
 
+
+/**
+ 调用钱包客户端
+ */
 - (IBAction)openPandaX:(id)sender {
     if (self.receiveAddressTF.text.length == 0) {
         [MBProgressHUD showMessage:@"请输入转账地址!"];
