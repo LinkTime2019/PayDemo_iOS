@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PDAuth2.h
 //  OAuth2Demo
 //
 //  Created by ethereum on 2019/2/21.
@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PandaX.h"
 
-@interface ViewController : UIViewController
 
+@interface PDAgent ()
 
 @end
 
