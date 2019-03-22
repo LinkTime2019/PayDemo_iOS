@@ -9,8 +9,9 @@
 #import "PDAuth2VC.h"
 #import "PandaX.h"
 
-
+/************************base64相关*************************/
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+/************************base64相关*************************/
 
 @interface PDAuth2VC ()
 @property (nonatomic, copy)NSString *access_token;
@@ -136,6 +137,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return jsonString;
 }
 
+/************************base64相关*************************/
 - (NSString *)base64EncodedStringFrom:(NSData *)data
 {
     if ([data length] == 0)
@@ -167,6 +169,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     
     return [[NSString alloc] initWithBytesNoCopy:characters length:length encoding:NSASCIIStringEncoding freeWhenDone:YES];
 }
+/************************base64相关*************************/
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
