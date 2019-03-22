@@ -11,10 +11,31 @@
 
 @interface PDAgent : NSObject
 
+/**
+ 通过appid和appsecret获取
+
+ @param appid 钱包平台获取的appid
+ @param appsecret 钱包平台获取appid时对应的appsecret
+ @param completion 请求完成回调方法
+ */
 + (void)accessTokenWithAppId:(NSString *)appid Appsecret:(NSString *)appsecret finish:(void(^)(NSDictionary *response, NSError *error))completion;
 
+/**
+ 通过accesstoken获取支持的代币列表
 
+ @param accessToken 通过appid和appsecret从钱包后台获取accesstoken(获取方法如上)
+ @param completion 请求完成回调方法
+ */
 + (void)tokensWithAccessToken:(NSString *)accessToken finish:(void(^)(NSArray *tokens, NSError *error))completion;
+
+
+/**
+ 通过appid和appsecret获取支持的代币列表
+
+ @param appid 钱包平台获取的appid
+ @param appsecret 钱包平台获取appid时对应的appsecret
+ @param completion 请求完成回调方法
+ */
 + (void)tokensWithAppId:(NSString *)appid Appsecret:(NSString *)appsecret finish:(void(^)(NSArray *tokens, NSError *error))completion;
 
 @end
