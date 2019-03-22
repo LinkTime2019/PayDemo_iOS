@@ -106,8 +106,8 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     else
     {
         NSLog(@"No such url.");
-        /// 跳到 appStore 某个 app
-        NSURL* urlAppStore = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/tie-lu12306/id564818797?mt=8"];
+        /// 跳到 appStore
+        NSURL* urlAppStore = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/tie-lu12306/id1367025446?mt=8"];
         [[UIApplication sharedApplication] openURL: urlAppStore];
     }
 }
