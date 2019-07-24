@@ -1,7 +1,7 @@
 # PayDemo_iOS
 
 # 一、完整支付流程如下图:
-![流程图](https://github.com/LinkTime2019/PayDemo_iOS/blob/master/images/OAuth2流程.png)
+![流程图] (https://github.com/LinkTime2019/PayDemo_iOS/blob/master/images/OAuth2流程.png)
 
 # 二、申请对应的appid和appsecret;
 前往PandaX注册获取appid和appsecret.
