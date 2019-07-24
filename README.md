@@ -1,7 +1,7 @@
 # PayDemo_iOS
 
 # 一、完整支付流程如下图:
-<div align=center><img width="598" height="358" src="https://github.com/LinkTime2019/PayDemo_iOS/master/images/OAuth2流程.png"/></div>
+<div align=center><img width="598" height="358" src="https://github.com/LinkTime2019/PayDemo_iOS/tree/master/images/OAuth2流程.png"/></div>
 
 # 二、申请对应的appid和appsecret;
 前往PandaX注册获取appid和appsecret.
@@ -9,7 +9,7 @@
 # 三、集成方法:
 1、把OAuth2Demo内的PDAth2文件夹整个拖入工程(其包含了网络请求库AFNetworking,如有冲突,可删除文件夹内的AFNetworking并使用原工程的AFNetworking),并在需要调用支付的页面导入头文件:PandaX.h
 如下图:
-![集成示意图] (https://github.com/LinkTime2019/PayDemo_iOS/master/images/OAuth2流程.png)
+![集成示意图] (https://github.com/LinkTime2019/PayDemo_iOS/tree/master/images/集成示意图.png)
 
 # 四、使用方法:
 1、如果希望PandaX支付成功之后反馈支付结果,那么需要调用方配置后台回调地址,调起PandaX进行支付的前,需要先使用appid 和 appsecret获取accesstoken,然后在将accesstoken连同其他参数一起传过去,示例如下:
